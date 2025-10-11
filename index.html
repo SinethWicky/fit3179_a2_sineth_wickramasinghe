@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sports & Recreation Facilities in Victoria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A visual exploration of sports and recreational facilities, participation, and motivations across Victoria using Vega-Lite.">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #fafafa;
+      color: #333;
+      line-height: 1.8;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    p {
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      font-size: 1.1em;
+      text-align: center;
+      color: #222;
+    }
+
+    .vis {
+      display: inline-block;
+      margin: 10px;
+      vertical-align: middle;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      padding: 5px;
+      background: white;
+    }
+
+    .vis-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .vis-row {
+      display: flex;          /* horizontal layout */
+      align-items: flex-start;    /* vertically center text next to chart */
+      gap: 40px;              /* space between chart and text */
+      flex-wrap: nowrap;      /* prevent wrapping on wide screens */
+      margin: 40px 0;
+    }
+
+    .vis-row .vis {
+      flex: 0 0 60%;          /* chart takes ~60% width */
+      min-width: 400px;
+      display: block;         /* override inline-block */
+    }
+
+    .vis-text {
+      flex: 0 0 30%;          /* paragraph takes ~30% width */
+      max-width: 400px;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .vis-row-reverse {
+      display: flex;          /* horizontal layout */
+      align-items: flex-start;    /* vertically center text next to chart */
+      justify-content: space-between;
+      gap: 40px;              /* space between text and chart */
+      flex-wrap: nowrap;      /* keep side by side on wide screens */
+      margin: 40px 0;
+    }
+
+    .vis-row-reverse .vis {
+      flex: 0 0 60%;          /* chart takes ~60% width */
+      min-width: 400px;
+      display: block;
+    }
+
+    .vis-row-reverse .vis-text {
+      flex: 0 0 30%;          /* text takes ~30% width */
+      max-width: 400px;
+      text-align: left;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sports & Recreational Engagement in Victoria</h1>
+
+  <p>
+    Sport and recreational engagement in Victoria plays a pivotal role in the lives of Victorians, shaping not only 
+    physical health but also communal engagement and wellbeing. Within Victoria, new facilities and shared spaces are 
+    continually emerging, fostering more opportunities for individuals to socialise, remain active, and partake in recreational or 
+    casual activities. By mapping these facilities, we can explore how access to recreational spaces supports community 
+    wellbeing, physical activity, and participation in local sports within Victoria. 
+  </p>
+
+  <!-- MAP VISUALISATIONS -->
+  <div class="vis-container">
+    <!-- Victoria map -->
+    <div class="vis-block" style="text-align: center;">
+      <div id="vis1" class="vis"></div>
+      <p style="max-width: 800px; margin: 10px auto;">
+        The distribution of sports and recreational facilities across Victoria shows a higher concentration
+        in metropolitan and suburban areas, reflecting greater population density and demand for community 
+        engagement. This is especially visible around Melbourne and the south-eastern suburbs that show a big cluster, 
+        as higher population density is associated with higher demand for sports and recreational facilities. 
+      </p>
+    </div>
+
+    <!-- Casey map -->
+    <div class="vis-block" style="text-align: center;">
+      <div id="vis2" class="vis"></div>
+      <p style="max-width: 800px; margin: 10px auto;">
+        Facilities in the City of Casey include multi-sport complexes, local ovals, and specialized recreational spaces,
+        providing residents with a range of opportunities for physical activity. The dense network of sporting grounds
+        and parks highlights active local engagement and community investment within the City of Casey. A large volume 
+        of ovals are prominent as they are inexpensive to create and maintain. Furthermore, their multi-functional usability
+        for sports and other recreational activities such as dog walking make them a popular choice within the municipality. 
+      </p>
+    </div>
+  </div>
+
+    <!-- ADDITIONAL CHARTS BELOW -->
+  <div class="vis-block">
+
+    <!-- Row 1: Participation chart (left) + paragraph (right) -->
+    <div class="vis-row">
+      <div id="vis3" class="vis"></div>
+      <div class="vis-text">
+        <p>
+          This chart compares participation rates in physical activities across different locations in Victoria,
+          distinguishing between male and female participants. It shows how engagement levels vary depending
+          on whether activities occur at gyms, outdoor spaces, workplaces, or other venues.
+        </p>
+      </div>
+    </div>
+
+    <!-- Row 2: Motivation chart (below, full width) -->
+    <div class="vis-row-reverse">
+      <div class="vis-text">
+        <p>
+          This visualisation explores the motivations that drive Victorians to engage in physical activity.
+          You can select different age groups to see how motivations shift — for example, younger participants
+          often emphasise social and appearance-based reasons, while older groups prioritise health and wellbeing.
+        </p>
+      </div>
+      <div id="vis4" class="vis"></div>
+    </div>
+
+  </div>
+
+
+  <script type="text/javascript">
+    // === VIS 1: Victoria Map ===
+    const vis1 = "dot_map_victoria.json"
+
+    // === VIS 2: Casey Map ===
+    const vis2 = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 800,
+      "height": 600,
+      "title": {"text":"Recreational Facilities in City of Casey 2025", "fontSize":22},
+      "projection": {"type": "mercator", "center": [145.3, -38.05], "scale": 66000},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/casey.topojson",
+            "format": { "type": "topojson", "feature": "LGA_2025_AUST_GDA2020" }
+          },
+          "transform": [{"filter": "datum.properties.LGA_NAME25 === 'Casey'"}],
+          "mark": {"type": "geoshape", "fill": "#c8e6c9", "stroke": "black"}
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/casey_ovals.csv",
+            "format": {"type": "csv"}
+          },
+          "transform": [
+            {
+              "calculate": "datum.parktype === '' || datum.parktype === 'Sport' ? 'Other' : datum.parktype",
+              "as": "park_category"
+            }
+          ],
+          "selection": {
+            "highlight": {
+              "type": "multi",
+              "fields": ["park_category"],
+              "bind": "legend"
+            }
+          },
+          "mark": {"type": "circle", "opacity": 0.7, "stroke": "black", "strokeWidth": 1},
+          "encoding": {
+            "longitude": {"field": "longitude", "type": "quantitative"},
+            "latitude": {"field": "latitude", "type": "quantitative"},
+            "size": {"value": 150},
+            "color": {
+              "field": "park_category",
+              "type": "nominal",
+              "legend": {
+                "title": "Park Type",
+                "orient": "top-left",
+                "direction": "vertical",
+                "dx": 20,
+                "dy": 60
+              },
+              "scale": {"scheme": "tableau10"}
+            },
+            "opacity": {
+              "condition": {"selection": "highlight", "value": 1},
+              "value": 0.2
+            },
+            "tooltip": [
+              {"field": "name"},
+              {"field": "park_category"},
+              {"field": "postcode"}
+            ]
+          }
+        }
+      ]
+    };
+
+    // === VIS 3: Participation by Location and Gender ===
+    const vis3 = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 800,
+      "height": 500,
+      "title": "Participation in Physical Activity by Location and Gender - Victoria",
+      "data": {
+        "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/main/data/activity_locations_tidy.csv",
+        "format": {"type": "csv"}
+      },
+      "transform": [{"filter": "datum.Group === 'Males' || datum.Group === 'Females'"}],
+      "selection": {
+        "highlightGender": {
+          "type": "multi",
+          "fields": ["Group"],
+          "bind": "legend"
+        }
+      },
+      "mark": {"type": "bar"},
+      "encoding": {
+        "x": {"field": "Place", "type": "ordinal", "axis": {"title": "Activity Location", "labelAngle": -45}},
+        "y": {"field": "Value", "type": "quantitative", "axis": {"title": "Participation Rate (%)"}},
+        "color": {
+          "field": "Group",
+          "type": "nominal",
+          "title": "Gender",
+          "scale": {"scheme": "category10"},
+          "legend": {"title": "Gender"}
+        },
+        "xOffset": {"field": "Group"},
+        "opacity": {"condition": {"selection": "highlightGender", "value": 1}, "value": 0.3}
+      }
+    };
+
+    // === VIS 4: Motivation by Age Group ===
+    const vis4 = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": "Proportional Sources of Motivation for Engagement in Physical Activity - Victoria",
+      "width": 800,
+      "height": 600,
+      "data": {
+        "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/motivation_tidy_vic.csv"
+      },
+      "params": [{
+        "name": "ageGroup",
+        "value": "All",
+        "bind": {
+          "input": "select",
+          "options": ["All", "15-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"],
+          "labels": ["All", "15–17", "18–24", "25–34", "35–44", "45–54", "55–64", "65+"]
+        }
+      }],
+      "transform": [{"filter": "datum.Group == ageGroup"}],
+      "mark": "bar",
+      "encoding": {
+        "x": {"field": "Motivation", "type": "ordinal", "sort": "-y", "axis": {"labelAngle": -40, "title": "Motivation"}},
+        "y": {"field": "Value", "type": "quantitative", "title": "Proportion of Participants (%)"},
+        "tooltip": [{"field": "Motivation"}, {"field": "Value"}],
+        "color": {"field": "Motivation", "type": "nominal", "scale": {"scheme": "category20"}, "legend": null}
+      }
+    };
+
+    // === Embed all visualisations ===
+    vegaEmbed("#vis1", vis1).catch(console.error);
+    vegaEmbed("#vis2", vis2).catch(console.error);
+    vegaEmbed("#vis3", vis3).catch(console.error);
+    vegaEmbed("#vis4", vis4).catch(console.error);
+  </script>
+</body>
+</html>
