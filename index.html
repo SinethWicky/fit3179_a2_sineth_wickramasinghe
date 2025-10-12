@@ -10,25 +10,47 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
+   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Rajdhani', sans-serif;
       margin: 40px;
       background-color: #fafafa;
       color: #333;
-      line-height: 1.8;
     }
+
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-      text-align: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 5em;
+    text-align: center;
+    margin: 30px auto;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    background-color: #1b3d6d;
+    padding: 20px 40px;
+    border-radius: 8px;
+    display: inline-block;
+    white-space: nowrap;
     }
+
     p {
       max-width: 1200px;
       margin: 0 auto 40px auto;
       font-size: 1.1em;
       text-align: center;
       color: #222;
+      line-height: 1.8;
+      font-size: 1.5em;     
+      font-weight: 800;
+      max-width: none;       /* remove width limit */
+      width: 100%; 
+      background-color: #ffffff;       
+      border: 8px solid #d9ff2f;      
+      border-radius: 20px;             
+      padding: 30px;                   
+      box-sizing: border-box;         
     }
 
     .vis {
@@ -64,10 +86,11 @@
     }
 
     .vis-text {
-      flex: 0 0 30%;          /* paragraph takes ~30% width */
-      max-width: 400px;
-      text-align: left;
+      flex: 1;                /* allow it to take up remaining space */
+      max-width: none;        /* remove the 400px limit */
+      text-align: justify;    /* optional – makes the paragraph flush left/right */
       line-height: 1.6;
+      padding-right: 10px;    /* add breathing space on the right edge */
     }
 
     .vis-row-reverse {
@@ -122,8 +145,7 @@
     <div class="vis-block" style="text-align: center;">
       <div id="vis2" class="vis"></div>
       <p style="max-width: 800px; margin: 10px auto;">
-        Facilities in the City of Casey include multi-sport complexes, local ovals, and specialized recreational spaces,
-        providing residents with a range of opportunities for physical activity. The dense network of sporting grounds
+        Facilities in the City of Casey include a dense network of sporting grounds
         and parks highlights active local engagement and community investment within the City of Casey. A large volume 
         of ovals are prominent as they are inexpensive to create and maintain. Furthermore, their multi-functional usability
         for sports and other recreational activities such as dog walking make them a popular choice within the municipality. 
@@ -141,7 +163,14 @@
         <p>
           This chart compares participation rates in physical activities across different locations in Victoria,
           distinguishing between male and female participants. It shows how engagement levels vary depending
-          on whether activities occur at gyms, outdoor spaces, workplaces, or other venues.
+          on whether activities occur at gyms, outdoor spaces, workplaces, or other venues. Across both genders 
+          Public Space is the most common location for engagement in physical activity likely due to its easy 
+          accessibility and vacancy within the commnunity. The lowest participation in physical activity is at 
+          workplaces which can be seen as a source of improvement for Victoria by fostering opportunities and equipment 
+          for physical activity to improve an individuals physiological wellbeing. Male participation in physical 
+          activity exceeds that of female participation in gyms, commerical premises or public space. On the other 
+          hand female participation engages in recreational facilities, sports clubs and workplaces suggesting comfortability
+          in respective genders in specific locations. 
         </p>
       </div>
     </div>
@@ -163,7 +192,40 @@
 
   <script type="text/javascript">
     // === VIS 1: Victoria Map ===
-    const vis1 = "JSON/dot_map_victoria.json"
+    const vis1 = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 800,
+      "height": 600,
+      "title": {"text":"Dot Map of Sports and Recreational Facilities in Victoria 2024", "fontSize":22},
+      "projection": {"type": "mercator", "center": [144.5, -37.2], "scale": 4000},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/main/data/LGA_2025_VIC_GDA2020.topojson",
+            "format": {"type": "topojson", "feature": "LGA_2025_AUST_GDA2020"}
+          },
+          "transform": [{"filter": "datum.properties.STE_NAME21 === 'Victoria'"}],
+          "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "black"}
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/srv_ifmd_all-facilities_2.csv",
+            "format": {"type": "csv"}
+          },
+          "mark": {"type": "circle", "color": "red", "opacity": 0.6},
+          "encoding": {
+            "longitude": {"field": "Longitude", "type": "quantitative"},
+            "latitude": {"field": "Latitude", "type": "quantitative"},
+            "size": {"value": 30},
+            "tooltip": [
+              {"field": "Facility Name"},
+              {"field": "Suburb/Town"},
+              {"field": "Sports Played"}
+            ]
+          }
+        }
+      ]
+    };
 
     // === VIS 2: Casey Map ===
     const vis2 = {
@@ -235,7 +297,7 @@
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
       "width": 800,
       "height": 500,
-      "title": "Participation in Physical Activity by Location and Gender - Victoria",
+      "title": {"text": "Participation in Physical Activity by Location and Gender - Victoria", "fontSize":22},
       "data": {
         "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/main/data/activity_locations_tidy.csv",
         "format": {"type": "csv"}
@@ -267,7 +329,7 @@
     // === VIS 4: Motivation by Age Group ===
     const vis4 = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "title": "Proportional Sources of Motivation for Engagement in Physical Activity - Victoria",
+      "title": {"text": "Proportional Sources of Motivation for Engagement in Physical Activity - Victoria", "fontSize":22},
       "width": 800,
       "height": 600,
       "data": {
@@ -300,4 +362,3 @@
   </script>
 </body>
 </html>
-
