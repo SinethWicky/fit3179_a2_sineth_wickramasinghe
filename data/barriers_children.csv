@@ -1,45 +1,24 @@
-﻿,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,
-AusPlay survey results January 2024 - December 2024,,,,,,,,,,,,,,,,,,,,,,,,
-Released at:,,30 April 2025,,,,,,,,,,,,,,,,,,,,,,
-Table number:,,13,,,,,,,,,,,,,,,,,,,,,,
-Table name:,,Barriers to participation (children),, ,,,,,,,,,,,,,,,,,,,,
-Base:,,Child non-players,, , ,,,,,,,,,,,,,,,,,,,
-,,Wrong age/too old/too young,"Doesn't like
- physical activity","Can't afford it/
-can't afford 
-transport","Already does 
-enough",Not a priority,"Not enough time/
-too many other commitments",Too lazy,Disability,"Poor health 
-or injury","Not value for money/not 
-worth it","No opportunities/
-facilities/clubs
- in my areas","No longer
- interested",Fear of injury,Waiting list,The weather,"Nobody to 
-do it with",Not familiar with activity/rules,No transport/can't get there,Too competitve,Not good enough,Fear of discrimination,Not culturally appropriate,"Focus on or move 
-to a different activity/sport"
-,,Proportion of non-participants,,,,,,,,,,,,,,,,,,,,,,
-All,Total,47.5%,8.6%,7.8%,6.8%,4.7%,4.2%,2.9%,3.7%,4.6%,4.1%,2.0%,1.6%,2.1%,2.0%,3.3%,1.4%,2.9%,1.5%,1.6%,1.9%,1.4%,0.8%,0.4%
-,,,,,,,,,,,,,,,,,,,,,,,,
-Males^,Total,51.2%,6.9%,8.0%,7.8%,3.5%,3.0%,2.3%,4.0%,5.2%,3.5%,1.9%,1.3%,2.6%,1.4%,4.0%,1.0%,3.7%,0.8%,2.1%,3.2%,1.3%,0.3%,0.3%
-,,,,,,,,,,,,,,,,,,,,,,,,
-Females^,Total,44.1%,10.5%,7.6%,5.9%,6.2%,5.6%,2.9%,3.1%,3.6%,4.9%,2.2%,2.0%,1.7%,2.5%,2.6%,1.9%,2.0%,2.3%,0.7%,0.5%,1.6%,1.3%,0.6%
-,,Estimated number of participants,,,,,,,,,,,,,,,,,,,,,,
-All#,Total,"158,245","28,750","25,889","22,732","15,814","14,062","9,586","12,203","15,257","13,777","6,733","5,378","7,099","6,628","11,023","4,660","9,511","4,940","5,257","6,471","4,799","2,589","1,359"
-,,,,,,,,,,,,,,,,,,,,,,,,
-Males^,Total,"89,903","12,111","14,131","13,658","6,200","5,318","4,053","6,979","9,120","6,138","3,352","2,297","4,521","2,382","7,018","1,737","6,425","1,426","3,658","5,642","2,348",519,501
-,,,,,,,,,,,,,,,,,,,,,,,,
-Females^,Total,"68,342","16,315","11,759","9,073","9,613","8,744","4,529","4,863","5,635","7,639","3,381","3,081","2,578","3,824","4,005","2,922","3,086","3,515","1,129",829,"2,451","2,070",858
-,,,,,,,,,,,,,,,,,,,,,,,,
-"NB. Please note that for children 0-14 years, data was collected via the child's parent/guardian for organised participation outside of school hours",,,,,,,,,,,,,,,,,,,,,,,,
-NB. This table presents all the barriers presented to respondents in the online AusPlay questionnaire.,,,,,,,,,,,,,,,,,,,,,,,,
-NB. Estimated participant numbers have not been rounded but users must remember that they are estimates and are subject to margins of error. Refer to sheet number 34 for margin of error and relative margin of error statistics. ,,,,,,,,,,,,,,,,,,,,,,,,
-^ Age group data by gender has not been reported due to sample size,,,,,,,,,,,,,,,,,,,,,,,,
-* Estimate has relative margin of error between 50% and 100% and should be used with caution ,,,,,,,,,,,,,,,,,,,,,,,,
-** Estimate has relative margin of error greater than 100% and is considered too unreliable to use,,,,,,,,,,,,,,,,,,,,,,,,
-"# AusPlay collects data on gender, including non-binary and self-described. Non-binary and self-described gender are included in Total columns but not reported separately due to sample size. The sum of male and female estimates is not therefore equal to the total.",,,,,,,,,,,,,,,,,,,,,,,,
+Barrier,Percentage
+Wrong age/too old/too young,47.5
+Doesn't like physical activity,8.6
+Can't afford it/can't afford transport,7.8
+Already does enough,6.8
+Not a priority,4.7
+Not enough time/too many other commitments,4.2
+Too lazy,2.9
+Disability,3.7
+Poor health or injury,4.6
+Not value for money/not worth it,4.1
+No opportunities/facilities/clubs in my areas,2.0
+No longer interested,1.6
+Fear of injury,2.1
+Waiting list,2.0
+The weather,3.3
+Nobody to do it with,1.4
+Not familiar with activity/rules,2.9
+No transport/can't get there,1.5
+Too competitive,1.6
+Not good enough,1.9
+Fear of discrimination,1.4
+Not culturally appropriate,0.8
+Focus on or move to a different activity/sport,0.4
