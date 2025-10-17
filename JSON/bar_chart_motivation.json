@@ -1,0 +1,58 @@
+{
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": {"text": "Sources of Motivation for Engagement in Physical Activity - Victoria 2025", "fontSize": 20},
+      "width": 750,
+      "height": 700,
+      "data": {
+        "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_w10_hw_sineth_wickramasinghe/refs/heads/main/motivation_tidy_vic.csv"
+      },
+      "params": [
+        {
+          "name": "ageGroup",
+          "value": "All",
+          "bind": {
+            "input": "select",
+            "name": "Age Group: ", 
+            "options": ["All", "15-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"],
+            "labels": ["All", "15–17", "18–24", "25–34", "35–44", "45–54", "55–64", "65+"]
+          }
+        }
+      ],
+      "transform": [
+        {"filter": "datum.Group == ageGroup"}
+      ],
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "x": {"field": "Motivation", "type": "ordinal", "sort": "-y", "axis": {"labelAngle": -40, "title": "Motivation"}},
+            "y": {"field": "Value", "type": "quantitative", "title": "Proportion of Participants (%)"},
+            "color": {"field": "Motivation", "type": "nominal", "scale": {"scheme": "category20"}, "legend": null},
+            "tooltip": [
+              {"field": "Motivation", "type": "ordinal"},
+              {"field": "Value", "type": "quantitative"}
+            ]
+          }
+        },
+        {
+          "mark": {"type": "rule", "color": "red", "strokeWidth": 2},
+          "transform": [
+            {"aggregate": [{"op": "median", "field": "Value", "as": "medianValue"}]}
+          ],
+          "encoding": {
+            "y": {"field": "medianValue", "type": "quantitative"}
+          }
+        },
+        {
+          "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5, "color": "red", "fontSize": 18},
+          "transform": [
+            {"aggregate": [{"op": "median", "field": "Value", "as": "medianValue"}]}
+          ],
+          "encoding": {
+            "y": {"field": "medianValue", "type": "quantitative"},
+            "x": {"value": 590},
+            "text": {"value": "Median"}
+          }
+        }
+      ]
+    }
