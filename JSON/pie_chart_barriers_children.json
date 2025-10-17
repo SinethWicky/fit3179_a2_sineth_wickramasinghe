@@ -1,0 +1,48 @@
+{
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": {
+        "text": "Barriers to Participation in Physical Activity – Victoria (Children, All) 2025",
+        "fontSize": 20,
+        "anchor": "middle"
+      },
+      "width": 650,
+      "height": 600,
+      "data": {
+        "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/barriers_children.csv"
+      },
+      "params": [
+        {
+          "name": "selectedBarrier",
+          "select": {"type": "point", "fields": ["Barrier"]},
+          "bind": "legend"
+        }
+      ],
+      "encoding": {
+        "theta": {"field": "Percentage", "type": "quantitative"},
+        "color": {
+          "field": "Barrier",
+          "type": "nominal",
+          "scale": {"scheme": "category20"},
+          "legend": {"columns": 2, 
+                    "symbolType": "circle", 
+                    "orient": "top"}
+        },
+        "opacity": {
+          "condition": {"param": "selectedBarrier", "value": 1},
+          "value": 0.3
+        },
+        "tooltip": [
+          {"field": "Barrier", "type": "nominal"},
+          {"field": "Percentage", "type": "quantitative", "title": "Percentage (%)"}
+        ]
+      },
+      "mark": {
+        "type": "arc",
+        "innerRadius": 90,
+        "outerRadius": 300,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "view": {"stroke": null},
+      "config": {"background": "#fafafa"}
+    }
