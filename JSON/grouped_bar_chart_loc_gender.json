@@ -1,0 +1,32 @@
+{
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 750,
+      "height": 700,
+      "title": {"text": "Participation in Physical Activity by Location and Gender - Victoria 2025", "fontSize":20},
+      "data": {
+        "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/main/data/activity_locations_tidy.csv",
+        "format": {"type": "csv"}
+      },
+      "transform": [{"filter": "datum.Group === 'Males' || datum.Group === 'Females'"}],
+      "selection": {
+        "highlightGender": {
+          "type": "multi",
+          "fields": ["Group"],
+          "bind": "legend"
+        }
+      },
+      "mark": {"type": "bar"},
+      "encoding": {
+        "x": {"field": "Place", "type": "ordinal", "axis": {"title": "Activity Location", "labelAngle": -45}},
+        "y": {"field": "Value", "type": "quantitative", "axis": {"title": "Participation Rate (%)"}},
+        "color": {
+          "field": "Group",
+          "type": "nominal",
+          "title": "Gender",
+          "scale": {"scheme": "category10"},
+          "legend": {"title": "Gender"}
+        },
+        "xOffset": {"field": "Group"},
+        "opacity": {"condition": {"selection": "highlightGender", "value": 1}, "value": 0.3}
+      }
+    }
