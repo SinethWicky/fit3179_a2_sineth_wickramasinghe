@@ -18,10 +18,19 @@
             "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/srv_ifmd_all-facilities_2.csv",
             "format": {"type": "csv"}
           },
-          "mark": {"type": "circle", "color": "red", "opacity": 0.6},
+          "transform": [
+            {"calculate": "'Sports/Recreational Facility'", "as": "FacilityType"}
+          ],
+          "mark": {"type": "circle", "opacity": 0.6},
           "encoding": {
             "longitude": {"field": "Longitude", "type": "quantitative"},
             "latitude": {"field": "Latitude", "type": "quantitative"},
+            "color": {
+              "field": "FacilityType",
+              "type": "nominal",
+              "legend": {"title": "Facility Type", 
+              "orient": "top"}
+            },
             "size": {"value": 30},
             "tooltip": [
               {"field": "Facility Name"},
@@ -31,4 +40,4 @@
           }
         }
       ]
-    };
+    }
