@@ -1,6 +1,6 @@
 {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "width": 750,
+      "width": 690,
       "height": 700,
       "title": {"text": "Participation in Physical Activity by Location and Gender - Victoria 2025", "fontSize":20},
       "data": {
