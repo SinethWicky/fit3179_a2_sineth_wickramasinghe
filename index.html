@@ -21,18 +21,19 @@
     }
 
     h1 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 5em;
-    text-align: center;
-    margin: 30px auto;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: white;
-    background-color: #1b3d6d;
-    padding: 20px 40px;
-    border-radius: 8px;
-    display: inline-block;
-    white-space: nowrap;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 4.3em;
+      text-align: center;
+      margin: 30px auto;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: white;
+      background-color: #1b3d6d;
+      padding: 20px 40px;
+      border-radius: 8px;
+      display: inline-block;
+      white-space: normal;
+      max-width: 95%;
     }
 
     p {
@@ -54,66 +55,27 @@
     }
 
     .vis {
-      display: inline-block;
-      margin: 10px;
-      vertical-align: middle;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      padding: 5px;
-      background: white;
+      display: block;
+      margin: 10px auto;
+      width: 100%;
+      max-width: 800px;
     }
 
     .vis-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: flex-start;
       gap: 40px;
       text-align: center;
     }
 
-    .vis-row {
-      display: flex;          /* horizontal layout */
-      align-items: flex-start;    /* vertically center text next to chart */
-      gap: 40px;              /* space between chart and text */
-      flex-wrap: nowrap;      /* prevent wrapping on wide screens */
-      margin: 40px 0;
-    }
-
-    .vis-row .vis {
-      flex: 0 0 60%;          /* chart takes ~60% width */
+    .vis-block {
+      flex: 1 1 45%;
       min-width: 400px;
-      display: block;         /* override inline-block */
+      max-width: 800px;
     }
 
-    .vis-text {
-      flex: 1;                /* allow it to take up remaining space */
-      max-width: none;        /* remove the 400px limit */
-      text-align: justify;    /* optional – makes the paragraph flush left/right */
-      line-height: 1.6;
-      padding-right: 10px;    /* add breathing space on the right edge */
-    }
-
-    .vis-row-reverse {
-      display: flex;          /* horizontal layout */
-      align-items: flex-start;    /* vertically center text next to chart */
-      justify-content: space-between;
-      gap: 40px;              /* space between text and chart */
-      flex-wrap: nowrap;      /* keep side by side on wide screens */
-      margin: 40px 0;
-    }
-
-    .vis-row-reverse .vis {
-      flex: 0 0 60%;          /* chart takes ~60% width */
-      min-width: 400px;
-      display: block;
-    }
-
-    .vis-row-reverse .vis-text {
-      flex: 0 0 30%;          /* text takes ~30% width */
-      max-width: 400px;
-      text-align: left;
-      line-height: 1.6;
-    }
   </style>
 </head>
 <body>
@@ -154,211 +116,79 @@
   </div>
 
     <!-- ADDITIONAL CHARTS BELOW -->
-  <div class="vis-block">
+  <div class="vis-container">
 
-    <!-- Row 1: Participation chart (left) + paragraph (right) -->
-    <div class="vis-row">
+    <div class="vis-block">
       <div id="vis3" class="vis"></div>
-      <div class="vis-text">
-        <p>
-          This chart compares participation rates in physical activities across different locations in Victoria,
-          distinguishing between male and female participants. It shows how engagement levels vary depending
-          on whether activities occur at gyms, outdoor spaces, workplaces, or other venues. Across both genders 
-          Public Space is the most common location for engagement in physical activity likely due to its easy 
-          accessibility and vacancy within the commnunity. The lowest participation in physical activity is at 
-          workplaces which can be seen as a source of improvement for Victoria by fostering opportunities and equipment 
-          for physical activity to improve an individuals physiological wellbeing. Male participation in physical 
-          activity exceeds that of female participation in gyms, commerical premises or public space. On the other 
-          hand female participation engages in recreational facilities, sports clubs and workplaces suggesting comfortability
-          in respective genders in specific locations. 
-        </p>
-      </div>
+      <p>
+        This chart compares participation rates in physical activities across different locations in Victoria,
+        distinguishing between male and female participants. It shows how engagement levels vary depending
+        on whether activities occur at gyms, outdoor spaces, workplaces, or other venues.
+      </p>
     </div>
 
-    <!-- Row 2: Motivation chart (below, full width) -->
-    <div class="vis-row-reverse">
-      <div class="vis-text">
-        <p>
-          This visualisation explores the motivations that drive Victorians to engage in physical activity.
-          You can select different age groups to see how motivations shift — for example, younger participants
-          often emphasise social and appearance-based reasons, while older groups prioritise health and wellbeing.
-        </p>
-      </div>
+    <div class="vis-block">
       <div id="vis4" class="vis"></div>
+      <p>
+        This visualisation explores the motivations that drive Victorians to engage in physical activity.
+        You can select different age groups to see how motivations shift — for example, younger participants
+        often emphasise social and appearance-based reasons, while older groups prioritise health and wellbeing.
+      </p>
     </div>
 
   </div>
 
+  <div class="vis-container">
+
+  <div class="vis-block">
+    <div id="vis5" class="vis"></div>
+    <p>
+      This chart illustrates the primary barriers preventing adults in Victoria from engaging 
+      in physical activity. Poor health, increasing age, and disability are the most frequently 
+      reported reasons for non-participation, while financial and social barriers such as cost, 
+      lack of transport, or no one to participate with are less prominent. This insight highlights 
+      the importance of addressing both physical and motivational barriers to improve overall 
+      community wellbeing.
+    </p>
+  </div>
+
+  <div class="vis-block">
+    <div id="vis6" class="vis"></div>
+    <p>
+      This chart illustrates the primary barriers preventing children in Victoria from engaging 
+      in physical activity. Age, dislike of physical activity, and affordability are the most 
+      commonly reported reasons. Highlighting these barriers can guide interventions for 
+      children and support targeted programs to increase participation.
+    </p>
+  </div>
+
+</div>
+
 
   <script type="text/javascript">
     // === VIS 1: Victoria Map ===
-    const vis1 = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "width": 800,
-      "height": 600,
-      "title": {"text":"Dot Map of Sports and Recreational Facilities in Victoria 2024", "fontSize":22},
-      "projection": {"type": "mercator", "center": [144.5, -37.2], "scale": 4000},
-      "layer": [
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/main/data/LGA_2025_VIC_GDA2020.topojson",
-            "format": {"type": "topojson", "feature": "LGA_2025_AUST_GDA2020"}
-          },
-          "transform": [{"filter": "datum.properties.STE_NAME21 === 'Victoria'"}],
-          "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "black"}
-        },
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/srv_ifmd_all-facilities_2.csv",
-            "format": {"type": "csv"}
-          },
-          "mark": {"type": "circle", "color": "red", "opacity": 0.6},
-          "encoding": {
-            "longitude": {"field": "Longitude", "type": "quantitative"},
-            "latitude": {"field": "Latitude", "type": "quantitative"},
-            "size": {"value": 30},
-            "tooltip": [
-              {"field": "Facility Name"},
-              {"field": "Suburb/Town"},
-              {"field": "Sports Played"}
-            ]
-          }
-        }
-      ]
-    };
+    const vis1 = "JSON/dot_map_victoria.json";
 
     // === VIS 2: Casey Map ===
-    const vis2 = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "width": 800,
-      "height": 600,
-      "title": {"text":"Recreational Facilities in City of Casey 2025", "fontSize":22},
-      "projection": {"type": "mercator", "center": [145.3, -38.05], "scale": 66000},
-      "layer": [
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/casey.topojson",
-            "format": { "type": "topojson", "feature": "LGA_2025_AUST_GDA2020" }
-          },
-          "transform": [{"filter": "datum.properties.LGA_NAME25 === 'Casey'"}],
-          "mark": {"type": "geoshape", "fill": "#c8e6c9", "stroke": "black"}
-        },
-        {
-          "data": {
-            "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/casey_ovals.csv",
-            "format": {"type": "csv"}
-          },
-          "transform": [
-            {
-              "calculate": "datum.parktype === '' || datum.parktype === 'Sport' ? 'Other' : datum.parktype",
-              "as": "park_category"
-            }
-          ],
-          "selection": {
-            "highlight": {
-              "type": "multi",
-              "fields": ["park_category"],
-              "bind": "legend"
-            }
-          },
-          "mark": {"type": "circle", "opacity": 0.7, "stroke": "black", "strokeWidth": 1},
-          "encoding": {
-            "longitude": {"field": "longitude", "type": "quantitative"},
-            "latitude": {"field": "latitude", "type": "quantitative"},
-            "size": {"value": 150},
-            "color": {
-              "field": "park_category",
-              "type": "nominal",
-              "legend": {
-                "title": "Park Type",
-                "orient": "top-left",
-                "direction": "vertical",
-                "dx": 20,
-                "dy": 60
-              },
-              "scale": {"scheme": "tableau10"}
-            },
-            "opacity": {
-              "condition": {"selection": "highlight", "value": 1},
-              "value": 0.2
-            },
-            "tooltip": [
-              {"field": "name"},
-              {"field": "park_category"},
-              {"field": "postcode"}
-            ]
-          }
-        }
-      ]
-    };
+    const vis2 = "JSON/dot_map_casey.json";
 
-    // === VIS 3: Participation by Location and Gender ===
-    const vis3 = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "width": 800,
-      "height": 500,
-      "title": {"text": "Participation in Physical Activity by Location and Gender - Victoria", "fontSize":22},
-      "data": {
-        "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/main/data/activity_locations_tidy.csv",
-        "format": {"type": "csv"}
-      },
-      "transform": [{"filter": "datum.Group === 'Males' || datum.Group === 'Females'"}],
-      "selection": {
-        "highlightGender": {
-          "type": "multi",
-          "fields": ["Group"],
-          "bind": "legend"
-        }
-      },
-      "mark": {"type": "bar"},
-      "encoding": {
-        "x": {"field": "Place", "type": "ordinal", "axis": {"title": "Activity Location", "labelAngle": -45}},
-        "y": {"field": "Value", "type": "quantitative", "axis": {"title": "Participation Rate (%)"}},
-        "color": {
-          "field": "Group",
-          "type": "nominal",
-          "title": "Gender",
-          "scale": {"scheme": "category10"},
-          "legend": {"title": "Gender"}
-        },
-        "xOffset": {"field": "Group"},
-        "opacity": {"condition": {"selection": "highlightGender", "value": 1}, "value": 0.3}
-      }
-    };
+    // VIS 3: Participation by Location and Gender
+    const vis3 = "JSON/grouped_bar_chart_loc_gender.json";
 
     // === VIS 4: Motivation by Age Group ===
-    const vis4 = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "title": {"text": "Proportional Sources of Motivation for Engagement in Physical Activity - Victoria", "fontSize":22},
-      "width": 800,
-      "height": 600,
-      "data": {
-        "url": "https://raw.githubusercontent.com/SinethWicky/fit3179_a2_sineth_wickramasinghe/refs/heads/main/data/motivation_tidy_vic.csv"
-      },
-      "params": [{
-        "name": "ageGroup",
-        "value": "All",
-        "bind": {
-          "input": "select",
-          "options": ["All", "15-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"],
-          "labels": ["All", "15–17", "18–24", "25–34", "35–44", "45–54", "55–64", "65+"]
-        }
-      }],
-      "transform": [{"filter": "datum.Group == ageGroup"}],
-      "mark": "bar",
-      "encoding": {
-        "x": {"field": "Motivation", "type": "ordinal", "sort": "-y", "axis": {"labelAngle": -40, "title": "Motivation"}},
-        "y": {"field": "Value", "type": "quantitative", "title": "Proportion of Participants (%)"},
-        "tooltip": [{"field": "Motivation"}, {"field": "Value"}],
-        "color": {"field": "Motivation", "type": "nominal", "scale": {"scheme": "category20"}, "legend": null}
-      }
-    };
+    const vis4 = "JSON/bar_chart_motivation.json";
+
+    const vis5 = "JSON/pie_chart_barriers_adults.json";
+
+    const vis6 = "JSON/pie_chart_barriers_children.json";
 
     // === Embed all visualisations ===
-    vegaEmbed("#vis1", vis1).catch(console.error);
-    vegaEmbed("#vis2", vis2).catch(console.error);
-    vegaEmbed("#vis3", vis3).catch(console.error);
-    vegaEmbed("#vis4", vis4).catch(console.error);
+    vegaEmbed("#vis1", vis1, {actions:false}).catch(console.error);
+    vegaEmbed("#vis2", vis2, {actions:false}).catch(console.error);
+    vegaEmbed("#vis3", vis3, {actions:false}).catch(console.error);
+    vegaEmbed("#vis4", vis4, {actions:false}).catch(console.error);
+    vegaEmbed("#vis5", vis5, {actions:false}).catch(console.error);
+    vegaEmbed("#vis6", vis6, {actions:false}).catch(console.error);
   </script>
 </body>
 </html>
