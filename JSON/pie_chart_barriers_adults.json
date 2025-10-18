@@ -36,7 +36,7 @@
           "scale": {"scheme": "category20"},
           "legend": {"columns": 2, 
                     "symbolType": "circle",
-                    "orient": "top",}
+                    "orient": "top"}
         },
         "opacity": {
           "condition": {"param": "selectedBarrier", "value": 1},
